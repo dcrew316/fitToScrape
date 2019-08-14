@@ -31,7 +31,9 @@ app.engine("handlebars", exphbs({
 }));
 app.set("view engine", "handlebars");
 
-mongoose.connect("mongodb://localhost/mongoHeadlines");
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
+mongoose.connect(MONGODB_URI);
+
 var db = mongoose.connection;
 
 db.on("error", function(error) {
